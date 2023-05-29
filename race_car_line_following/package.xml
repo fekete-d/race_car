@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>temp</name>
+  <name>race_car_line_following</name>
   <version>0.0.0</version>
-  <description>The temp package</description>
+  <description>Line following based on camera image processing</description>
   <maintainer email="bianka.matics@edu.bme.hu">Binaka Matics</maintainer>
   <maintainer email="demeter.csaba@edu.bme.hu">Csaba Demeter</maintainer>
   <maintainer email="fekete.daniel@edu.bme.hu">Daniel Fekete</maintainer>
@@ -10,8 +10,8 @@
   <author email="demeter.csaba@edu.bme.hu">Csaba Demeter</author>
   <author email="fekete.daniel@edu.bme.hu">Daniel Fekete</author>
   <license>MIT</license>
-  <!-- TODO <url type="website">http://wiki.ros.org/race_car_viz</url> -->
-  <!-- TODO <url type="repository">http://wiki.ros.org/race_car_viz</url> -->
+  <url type="website">https://github.com/fekete-d/race_car</url>
+  <url type="repository">https://github.com/fekete-d/race_car</url>
 
 
   <!-- The *depend tags are used to specify dependencies -->
@@ -40,33 +40,25 @@
   <build_depend>roscpp</build_depend>
   <build_depend>rospy</build_depend>
   <build_depend>std_msgs</build_depend>
-  <!-- <build_depend>steer_bot_hardware_gazebo</build_depend>
-  <build_depend>steer_drive_controller</build_depend>
-  <build_depend>stepback_and_steerturn_recovery</build_depend>
-  <build_depend>steer_drive_ros</build_depend> -->
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>theora_image_transport</build_depend>
 
   <build_export_depend>actionlib</build_export_depend>
   <build_export_depend>actionlib_msgs</build_export_depend>
   <build_export_depend>roscpp</build_export_depend>
   <build_export_depend>rospy</build_export_depend>
   <build_export_depend>std_msgs</build_export_depend>
-  <!-- <build_export_depend>steer_bot_hardware_gazebo</build_export_depend>
-  <build_export_depend>steer_drive_controller</build_export_depend>
-  <build_export_depend>stepback_and_steerturn_recovery</build_export_depend>
-  <build_export_depend>steer_drive_ros</build_export_depend> -->
+  <build_export_depend>geometry_msgs</build_export_depend>
+  <build_export_depend>theora_image_transport</build_export_depend>
 
   <exec_depend>actionlib</exec_depend>
   <exec_depend>actionlib_msgs</exec_depend>
   <exec_depend>roscpp</exec_depend>
   <exec_depend>rospy</exec_depend>
   <exec_depend>std_msgs</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>theora_image_transport</exec_depend>
 
-  <!-- <exec_depend>ackermann_steering_controller</exec_depend> -->
-  <!-- <exec_depend>controller_manager</exec_depend> -->
-  <!-- <exec_depend>steer_bot_hardware_gazebo</exec_depend>
-  <exec_depend>steer_drive_controller</exec_depend>
-  <exec_depend>stepback_and_steerturn_recovery</exec_depend>
-  <exec_depend>steer_drive_ros</exec_depend> -->
 
   <!-- <build_depend></build_depend>
   <build_export_depend></build_export_depend>

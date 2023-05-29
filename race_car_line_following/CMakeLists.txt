@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(temp)
+project(race_car_line_following)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 add_compile_options(-std=c++11)
@@ -13,6 +13,8 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  geometry_msgs
+  theora_image_transport
 )
 
 
@@ -27,8 +29,8 @@ find_package(catkin REQUIRED COMPONENTS
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES temp
-#  CATKIN_DEPENDS actionlib actionlib_msgs roscpp rospy std_msgs
+#  LIBRARIES race_car_line_following
+#  CATKIN_DEPENDS actionlib actionlib_msgs roscpp rospy std_msgs geometry_msgs theora_image_transport
 #  DEPENDS system_lib
 )
 
