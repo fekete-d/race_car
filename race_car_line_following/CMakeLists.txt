@@ -15,6 +15,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   geometry_msgs
   theora_image_transport
+  cv_bridge
 )
 
 
@@ -30,7 +31,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES race_car_line_following
-#  CATKIN_DEPENDS actionlib actionlib_msgs roscpp rospy std_msgs geometry_msgs theora_image_transport
+#  CATKIN_DEPENDS actionlib actionlib_msgs roscpp rospy std_msgs geometry_msgs theora_image_transport cv_bridge
 #  DEPENDS system_lib
 )
 
