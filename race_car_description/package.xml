@@ -10,8 +10,8 @@
   <author email="demeter.csaba@edu.bme.hu">Csaba Demeter</author>
   <author email="fekete.daniel@edu.bme.hu">Daniel Fekete</author>
   <license>MIT</license>
-  <!-- TODO <url type="website">http://wiki.ros.org/race_car_viz</url> -->
-  <!-- TODO <url type="repository">http://wiki.ros.org/race_car_viz</url> -->
+  <url type="website">https://github.com/fekete-d/race_car</url>
+  <url type="repository">https://github.com/fekete-d/race_car</url>
 
 
   <!-- The *depend tags are used to specify dependencies -->

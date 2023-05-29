@@ -13,6 +13,7 @@ find_package(catkin REQUIRED COMPONENTS
   joint_state_controller
   robot_state_publisher
   rqt_robot_steering
+  hector_trajectory_server
 )
 
 ###################################
@@ -36,6 +37,7 @@ catkin_package(
     joint_state_controller 
     robot_state_publisher 
     rqt_robot_steering
+    hector_trajectory_server
 #  DEPENDS system_lib
 )
 

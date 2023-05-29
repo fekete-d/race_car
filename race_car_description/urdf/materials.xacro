@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 
-<robot>
+<robot name="materials" xmlns:xacro="http://wiki.ros.org/xacro">
+  <xacro:property name="include_guard_materials" default="true"/>
+  <xacro:if value="${include_guard_materials}">
+  <xacro:property name="include_guard_materials" value="false"/>
 
   <material name="black">
     <color rgba="0.0 0.0 0.0 1.0"/>
@@ -48,4 +51,5 @@
     <color rgba="${222/255} ${207/255} ${195/255} 1.0"/>
   </material>
 
+  </xacro:if>
 </robot>

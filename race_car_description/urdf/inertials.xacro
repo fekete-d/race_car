@@ -11,6 +11,9 @@
  -->
 
 <robot name="inertials" xmlns:xacro="http://wiki.ros.org/xacro">
+    <xacro:property name="include_guard_inertials" default="true"/>
+    <xacro:if value="${include_guard_inertials}">
+    <xacro:property name="include_guard_inertials" value="false"/>
 
     <!-- Math constants -->
     <xacro:property name="math_pi"        value="3.141592653589793" />
@@ -48,4 +51,6 @@
             <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
         </inertial>
     </xacro:macro>
+
+    </xacro:if>
 </robot>

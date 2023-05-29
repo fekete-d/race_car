@@ -10,6 +10,9 @@
 
 #include <steer_bot_hardware_gazebo/steer_bot_hardware_gazebo.h>
 
+// counter variable for reducing the number of ROS_INFO_STREAM calls
+int ros_info_stream_slowdown_counter = 0;
+
 namespace steer_bot_hardware_gazebo
 {
   using namespace hardware_interface;
@@ -46,6 +49,9 @@ namespace steer_bot_hardware_gazebo
 
     nh_.getParam(ns_ + "enable_ackermann_link", enable_ackermann_link_);
     ROS_INFO_STREAM("enable_ackermann_link = " << (enable_ackermann_link_ ? "true" : "false"));
+
+    nh_.getParam(ns_ + "console_log_rate", console_log_rate_);
+    ROS_INFO_STREAM("console_log_rate = " << console_log_rate_);
 
     // Position joint limits interface
     std::vector<std::string> cmd_handle_names = front_steer_jnt_pos_cmd_interface_.getNames();
@@ -198,7 +204,12 @@ namespace steer_bot_hardware_gazebo
       else if(gazebo_jnt_name == front_steer_jnt_name_)
       {
         front_steer_jnt_pos_ = front_steer_jnt_pos_cmd_;
-        ROS_INFO_STREAM("front_steer_jnt_pos_ '" << front_steer_jnt_pos_ << " ' at writeSim()");
+        // slow down info stream
+        ros_info_stream_slowdown_counter = ++ros_info_stream_slowdown_counter % (1000 / console_log_rate_);
+        if(!ros_info_stream_slowdown_counter)
+        {
+          ROS_INFO_STREAM("front_steer_jnt_pos_ '" << front_steer_jnt_pos_ << "' at writeSim()");
+        }
       }
       else if(gazebo_jnt_name == virtual_front_steer_jnt_names_[INDEX_RIGHT])
       {

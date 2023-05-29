@@ -10,8 +10,8 @@
   <author email="demeter.csaba@edu.bme.hu">Csaba Demeter</author>
   <author email="fekete.daniel@edu.bme.hu">Daniel Fekete</author>
   <license>MIT</license>
-  <!-- TODO <url type="website">http://wiki.ros.org/race_car_viz</url> -->
-  <!-- TODO <url type="repository">http://wiki.ros.org/race_car_viz</url> -->
+  <url type="website">https://github.com/fekete-d/race_car</url>
+  <url type="repository">https://github.com/fekete-d/race_car</url>
 
 
   <!-- The *depend tags are used to specify dependencies -->
@@ -43,6 +43,7 @@
   <build_depend>joint_state_controller</build_depend>
   <build_depend>robot_state_publisher</build_depend>
   <build_depend>rqt_robot_steering</build_depend>
+  <build_depend>hector_trajectory_server</build_depend>
   <build_export_depend>controller_manager</build_export_depend>
   <build_export_depend>race_car_description</build_export_depend>
   <build_export_depend>race_car_control</build_export_depend>
@@ -51,6 +52,7 @@
   <build_export_depend>joint_state_controller</build_export_depend>
   <build_export_depend>robot_state_publisher</build_export_depend>
   <build_export_depend>rqt_robot_steering</build_export_depend>
+  <build_export_depend>hector_trajectory_server</build_export_depend>
   <exec_depend>controller_manager</exec_depend>
   <exec_depend>race_car_description</exec_depend>
   <exec_depend>race_car_control</exec_depend>
@@ -59,5 +61,7 @@
   <exec_depend>joint_state_controller</exec_depend>
   <exec_depend>robot_state_publisher</exec_depend>
   <exec_depend>rqt_robot_steering</exec_depend>
+  <exec_depend>hector_trajectory_server</exec_depend>
+
   <exec_depend>xacro</exec_depend>
 </package>

@@ -41,14 +41,14 @@ ackermann_steering_controller:
     ## Odom frame_id
     # Transform from odom -> base_link
     enable_odom_tf: true
-    odom_frame_id: '/odom'
+    odom_frame_id: 'odom'
 
     # Set to false if the motor driver provides velocity data. 
     estimate_velocity_from_position: true
 
     # Commands
     publish_cmd: true
-    allow_multiple_cmd_vel_publishers: false
+    allow_multiple_cmd_vel_publishers: true
 
     # Velocity and acceleration limits for the robot
     linear:

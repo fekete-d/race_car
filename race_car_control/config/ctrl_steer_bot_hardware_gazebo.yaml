@@ -11,3 +11,5 @@ steer_bot_hardware_gazebo:
   enable_ackermann_link : true
   wheel_separation_h : 0.1125
   wheel_separation_w : 0.0734375
+
+  console_log_rate: 1

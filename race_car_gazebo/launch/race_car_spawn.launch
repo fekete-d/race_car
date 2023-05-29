@@ -16,7 +16,6 @@
 
  <launch>
 
-    <!-- <arg name="use_rqt_robot_steering" default="false"/> -->
     <arg name="use_rqt_robot_steering" default="true"/>
     <arg name="model" default="$(find race_car_description)/urdf/f1_car.xacro"/>
     <arg name="x" default="0.0"/>
@@ -52,6 +51,12 @@
         <param name="default_topic" value="/ackermann_steering_controller/cmd_vel"/>
     </node>
     </group>
+
+    <!-- Launch trajectory server -->
+    <node name="hector_trajectory_server" pkg="hector_trajectory_server" type="hector_trajectory_server">
+        <param name="source_frame_name" value="base_link"/>
+        <param name="target_frame_name" value="odom"/>
+    </node>
 
     <!-- Spawn robot in Gazebo -->
     <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"  

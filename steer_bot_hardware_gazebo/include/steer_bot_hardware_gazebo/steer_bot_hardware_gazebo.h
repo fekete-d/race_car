@@ -163,6 +163,11 @@ private:
   double wheel_separation_w_;
   double wheel_separation_h_;
 
+  // rate of logging joint positions to console while running simulation
+  int console_log_rate_;
+
+  //
+
   int log_cnt_;
 
   template <class T>
