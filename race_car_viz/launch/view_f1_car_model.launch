@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<!-- Display the f1_car model in rviz.
+-->
+<launch>
+    <!-- Pass the f1_car model to view_model.launch  -->
+    <include file="$(find race_car_viz)/launch/view_model.launch">
+        <arg name="model" value="$(find race_car_description)/urdf/f1_car.xacro" />
+    </include>
+</launch>
