@@ -7,6 +7,10 @@
     <arg name="use_sim_time" default="true"/>
     <arg name="headless" default="false"/>
     <arg name="physics" default="ode"/>
+
+    <arg name="scale" default="32"/>
+    <arg name="default_z" default="$(eval 0.05 + 1/2 / arg('scale') + 0.032 / arg('scale'))"/>
+    <arg name="default_yaw" default="1.2217"/>
  
     <!-- Launch Gazebo -->
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
@@ -21,8 +25,9 @@
 
     <!-- Spawn the model -->
     <include file="$(find race_car_gazebo)/launch/race_car_spawn.launch">     
-        <arg name="z"   value="0.03125" />
-        <arg name="yaw" value="1.2217"/>
+        <!-- <arg name="z"   value="0.03125" /> -->
+        <arg name="z"   value="$(arg default_z)" /> <!-- 0.05 + 1/32 / 2 + 0.001 -->
+        <arg name="yaw" value="$(arg default_yaw)"/>
     </include>
 
 </launch>

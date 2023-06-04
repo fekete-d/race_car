@@ -20,7 +20,7 @@
     <arg name="model" default="$(find race_car_description)/urdf/f1_car.xacro"/>
     <arg name="x" default="0.0"/>
     <arg name="y" default="0.0"/>
-    <arg name="z" default="0.03125" />
+    <arg name="z" default="0.1" />
     <arg name="roll" default="0.0"/>
     <arg name="pitch" default="0.0"/>
     <arg name="yaw" default="0.0"/>

@@ -43,40 +43,41 @@
   <!-- Math constants -->
   <xacro:property name="deg_to_rad" value="0.01745329251994329577"/>
   <xacro:property name="mass_multiplier" value="10"/>
+  <xacro:property name="scale" value="32"/>
 
   <!-- Robot base dimensions -->
-  <xacro:property name="base_length" value="${5.5 / 32}" /> 
-  <xacro:property name="base_width" value="${2.0 / 32}" /> 
-  <xacro:property name="base_height" value="${1.0 / 32}" /> 
-  <xacro:property name="base_mass" value="${0.025 * mass_multiplier}" /> 
+  <xacro:property name="base_length" value="${5.5 / scale}" /> 
+  <xacro:property name="base_width" value="${2.0 / scale}" /> 
+  <xacro:property name="base_height" value="${1.0 / scale}" /> 
+  <xacro:property name="base_mass" value="${850 / (scale*scale*scale) * mass_multiplier}" /> 
 
   <!-- Wheel link dimensions -->
-  <xacro:property name="wheel_radius" value="${18*0.0254/2 / 32}" />
-  <xacro:property name="wheel_thickness" value="${0.35 / 32}" />
-  <xacro:property name="wheel_mass" value="${0.00032 * mass_multiplier}" />
+  <xacro:property name="wheel_radius" value="${18*0.0254/2 / scale}" />
+  <xacro:property name="wheel_thickness" value="${0.35 / scale}" />
+  <xacro:property name="wheel_mass" value="${10.5 / (scale*scale*scale) * mass_multiplier}" />
 
   <!-- Steering link dimensions -->
   <xacro:property name="steer_radius" value="${wheel_radius / 2}" />
   <xacro:property name="steer_thickness" value="${wheel_thickness / 4}" />
-  <xacro:property name="steer_mass" value="${0.00032 * mass_multiplier}" />
+  <xacro:property name="steer_mass" value="${10.5 / (scale*scale*scale) * mass_multiplier}" />
 
   <!-- Axle positions -->
-  <xacro:property name="wheelbase" value="${3.6 / 32}" />
-  <xacro:property name="ride_height" value="${0.032 / 32}" />
+  <xacro:property name="wheelbase" value="${3.6 / scale}" />
+  <xacro:property name="ride_height" value="${0.032 / scale}" />
 
-  <xacro:property name="axle_offset_rear" value="0" />
-  <!-- <xacro:property name="axle_offset_rear" value="${wheel_radius}" /> -->
+  <!-- <xacro:property name="axle_offset_rear" value="0" /> -->
+  <xacro:property name="axle_offset_rear" value="${wheel_radius}" />
   <xacro:property name="axle_offset_front" value="${base_length - axle_offset_rear - wheelbase}" />
   <xacro:property name="axle_height" value="${-base_height/2 - ride_height + wheel_radius}" />
   <xacro:property name="steer_offset" value="${steer_thickness}" />
 
   <!-- Camera dimensions -->
-	<xacro:property name="camera_size" value="${0.2 / 32}"/>
+	<xacro:property name="camera_size" value="${0.2 / scale}"/>
 	<xacro:property name="camera_width" value="${camera_size}"/>
 	<xacro:property name="camera_thickness" value="${camera_size/2}"/>
 	<xacro:property name="camera_height" value="${camera_size*2/3}"/>
-	<xacro:property name="camera_mass" value="${0.00003 * mass_multiplier}"/>
-	<xacro:property name="camera_forward_tilt_deg" value="0"/>
+	<xacro:property name="camera_mass" value="${1 / (scale*scale*scale) * mass_multiplier}"/>
+	<xacro:property name="camera_forward_tilt_deg" value="10"/>
 
   <!-- Base link -->
   <link name="base_link">
