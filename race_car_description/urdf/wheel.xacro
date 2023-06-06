@@ -18,7 +18,7 @@
   <!-- Properties -->
   <xacro:property name="steer_effort" value="10.0"/>
   <xacro:property name="steer_velocity" value="5.0"/>
-  <xacro:property name="steer_limit_deg" value="45.0"/>
+  <xacro:property name="steer_limit_deg" value="30.0"/>
 
   <!-- Bicycle model front steering link (required for steer_drive_controller) -->
   <xacro:macro name="front_steer"
@@ -33,13 +33,13 @@
       axle_offset
       steer_height">
     <link name="${name}_steer_link">
-      <visual>
+      <!-- <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
           <cylinder radius="${steer_radius}" length="${steer_thickness}"/>
         </geometry>
         <material name="yellow" />
-      </visual>
+      </visual> -->
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
@@ -58,8 +58,9 @@
       <origin xyz="${base_length/2-axle_offset} 0 ${steer_height}" rpy="0 0 0"/>
       <axis xyz="0 0 1"/>
       <limit effort="${steer_effort}"
-             lower="${-180.0 * deg_to_rad}" upper="${180.0 * deg_to_rad}"
+             lower="${steer_limit_deg * deg_to_rad * -1.0}" upper="${steer_limit_deg * deg_to_rad}"
              velocity="${steer_velocity}"/>
+             <!-- lower="${-180.0 * deg_to_rad}" upper="${180.0 * deg_to_rad}" -->
     </joint>
 
     <!-- <transmission name="${name}_steer_joint_trans">
@@ -73,9 +74,9 @@
       </joint>
     </transmission> -->
 
-    <gazebo reference="${name}_steer_link">
+    <!-- <gazebo reference="${name}_steer_link">
       <material>Gazebo/Yellow</material>
-    </gazebo>
+    </gazebo> -->
   </xacro:macro>
 
   <!-- Car steering model front (steerable) wheel links (left/right) -->
@@ -96,14 +97,13 @@
       steer_height
       axle_height">
     <link name="${name}_steer_link">
-      <visual>
+      <!-- <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
           <cylinder radius="${steer_radius}" length="${steer_thickness}"/>
-					<!-- <mesh filename="package://robotrendszerek_projekt/meshes/f1_car_wheel.dae"/> -->
         </geometry>
         <material name="blue" />
-      </visual>
+      </visual> -->
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
@@ -119,7 +119,8 @@
     <joint name="${name}_steer_joint" type="revolute">
       <parent link="${parent}_link"/>
       <child link="${name}_steer_link"/>
-      <origin xyz="${base_length/2-axle_offset} ${reflect*(base_width/2+wheel_thickness/2)} ${steer_height}" rpy="0 0 0"/>
+      <!-- <origin xyz="${base_length/2-axle_offset} ${reflect*(base_width/2+wheel_thickness/2)} ${steer_height}" rpy="0 0 0"/> -->
+      <origin xyz="${base_length/2-axle_offset} ${reflect*(base_width/2-wheel_thickness/2)} ${steer_height}" rpy="0 0 0"/>
       <axis xyz="0 0 1"/>
       <limit effort="${steer_effort}"
              lower="${steer_limit_deg * deg_to_rad * -1.0}" upper="${steer_limit_deg * deg_to_rad}"
@@ -128,9 +129,10 @@
 
     <link name="${name}_wheel_link">
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="${(1-reflect)/2 * 180 * deg_to_rad} 0 0"/>
         <geometry>
-          <cylinder radius="${wheel_radius}" length="${wheel_thickness}"/>
+          <!-- <cylinder radius="${wheel_radius}" length="${wheel_thickness}"/> -->
+          <mesh filename="package://race_car_gazebo/meshes/f1_car_wheel_front.dae"/>
         </geometry>
         <material name="red" />
       </visual>
@@ -175,16 +177,16 @@
       </joint>
     </transmission> -->
 
-    <gazebo reference="${name}_steer_link">
+    <!-- <gazebo reference="${name}_steer_link">
       <material>Gazebo/Blue</material>
-    </gazebo>
+    </gazebo> -->
     
     <gazebo reference="${name}_wheel_link">
-      <material>Gazebo/Red</material>
+      <!-- <material>Gazebo/Red</material> -->
       <mu1 value="1.0"/>
 			<mu2 value="1.0"/>
-			<kp value="10000000.0" />
-			<kd value="1.0" />
+			<kp value="100000.0" />
+			<kd value="10.0" />
 			<fdir1 value="1 0 0"/>
     </gazebo>
   </xacro:macro>
@@ -199,13 +201,13 @@
       wheel_mass
       *origin">
     <link name="${name}_wheel_link">
-      <visual>
+      <!-- <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
           <cylinder radius="${wheel_radius}" length="${wheel_thickness}"/>
         </geometry>
         <material name="yellow" />
-      </visual>
+      </visual> -->
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
@@ -236,9 +238,9 @@
       </joint>
     </transmission> -->
 
-    <gazebo reference="${name}_wheel_link">
+    <!-- <gazebo reference="${name}_wheel_link">
       <material>Gazebo/Yellow</material>
-    </gazebo>
+    </gazebo> -->
   </xacro:macro>
 
   <!-- Bicycle model front wheel link (passive - no transmission) -->
@@ -291,16 +293,21 @@
     params="
       name
       parent
+      reflect
       wheel_radius
       wheel_thickness
       wheel_mass
-      *origin">
+      base_length
+      base_width
+      axle_offset
+      axle_height">
+      <!-- *origin"> -->
     <link name="${name}_wheel_link">
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="${(1-reflect)/2 * 180 * deg_to_rad} 0 0"/>
         <geometry>
-          <cylinder radius="${wheel_radius}" length="${wheel_thickness}"/>
-					<!-- <mesh filename="package://robotrendszerek_projekt/meshes/f1_car_wheel.dae"/> -->
+          <!-- <cylinder radius="${wheel_radius}" length="${wheel_thickness}"/> -->
+          <mesh filename="package://race_car_gazebo/meshes/f1_car_wheel_rear.dae"/>
         </geometry>
         <material name="red" />
       </visual>
@@ -319,7 +326,9 @@
     <joint name="${name}_wheel_joint" type="continuous">
       <parent link="${parent}_link"/>
       <child link="${name}_wheel_link"/>
-      <xacro:insert_block name="origin"/>
+      <!-- <xacro:insert_block name="origin"/> -->
+      <origin xyz="${-base_length/2+axle_offset_rear} ${reflect * (+base_width/2-wheel_thickness/2)} ${axle_height}" 
+              rpy="${-90 * deg_to_rad} 0 0"/> 
       <axis xyz="0 0 1"/>
     </joint>
 
@@ -335,11 +344,11 @@
     </transmission> -->
 
     <gazebo reference="${name}_wheel_link">
-      <material>Gazebo/Red</material>
+      <!-- <material>Gazebo/Red</material> -->
       <mu1 value="1.0"/>
 			<mu2 value="1.0"/>
-			<kp value="10000000.0" />
-			<kd value="1.0" />
+			<kp value="100000.0" />
+			<kd value="10.0" />
 			<fdir1 value="1 0 0"/>
     </gazebo>
   </xacro:macro>
