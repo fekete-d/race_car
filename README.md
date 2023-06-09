@@ -23,7 +23,7 @@ modellezése volt, amely Ackermann kormányzással irányítható, autonóm, kam
 
 ## 2. Program felépítése
 
-### 2.1 Mapparendszer
+### 2.1. Mapparendszer
 
 A mappák struktúrája az internet talált hasonló projektek mintájára lett így strukturálva. 
 ![mapparendszer](./assets/)
@@ -87,7 +87,7 @@ Ezek után már csak össze kellett kötni a vizuális modelleket az irányítot
 
 ## 5. Vonalkövetés
 
-### 5.1 Vonalfelismerés
+### 5.1. Vonalfelismerés
 
 A vonalfelismerés megalkotása során [ezt](https://www.youtube.com/watch?app=desktop&v=9C7Q8bRERgM) a videót vettük alapul. Ezen felül a képen elvégzendő átalakításokhoz az OpenCV csomagot használtuk fel.
 
