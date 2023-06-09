@@ -21,6 +21,8 @@ Fekete Dániel (_I0I7JK_), Demeter Csaba (_VV2GEA_), Matics Bianka (_U6IO4L_)
 A projektfeladat célja egy versenypálya, benne pedig egy versenyautó
 modellezése volt, amely Ackermann kormányzással irányítható, autonóm, kamerás vonalkövetés segítségével végig tud menni a pályán. 
 
+<a href=""><img height="400" src="./assets/youtube-video.png"></a>
+
 ## 2. Program felépítése
 
 ### 2.1. Mapparendszer
