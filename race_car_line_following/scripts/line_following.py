@@ -150,7 +150,7 @@ class LineFollower(object):
             print("delta="+str(delta))
 
             pid1.setpoint = delta[0]
-            pid2.setpoint = (1-1/100*delta[0])*origin[1]/500
+            pid2.setpoint = (1-1/100*delta[0])*origin[1]/1000
 
             output1 = pid1(output1)
             output2 = pid2(output2)
