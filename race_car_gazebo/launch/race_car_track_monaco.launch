@@ -30,4 +30,6 @@
         <arg name="yaw" value="$(arg default_yaw)"/>
     </include>
 
+     <include file="$(find race_car_line_following)/launch/line_following.launch"/> 
+
 </launch>

@@ -42,7 +42,7 @@
 
   <!-- Math constants -->
   <xacro:property name="deg_to_rad" value="0.01745329251994329577"/>
-  <xacro:property name="mass_multiplier" value="10"/>
+  <xacro:property name="mass_multiplier" value="1"/>
   <xacro:property name="scale" value="32"/>
 
   <!-- Robot base dimensions -->
@@ -81,11 +81,10 @@
 	<xacro:property name="camera_forward_tilt_deg" value="0"/>
 	<!-- <xacro:property name="camera_x" value="${base_length/2+camera_thickness/2}"/> -->
 	<xacro:property name="camera_y" value="0"/>
-	<!-- <xacro:property name="camera_z" value="${base_height/2-camera_height/2}"/> -->
-	<!-- <xacro:property name="camera_x" value="${-1.41 / scale + camera_thickness/2}"/>
-	<xacro:property name="camera_z" value="${0.82 / scale - camera_height/2}"/> -->
-	<xacro:property name="camera_x" value="${2.75 / scale + camera_thickness/2}"/>
-	<xacro:property name="camera_z" value="${-0.192 / scale - camera_height/2}"/>
+	<xacro:property name="camera_x" value="${base_length/2 + camera_thickness/2}"/>
+	<xacro:property name="camera_z" value="${base_height/2-camera_height/2}"/>
+	<!-- <xacro:property name="camera_x" value="${2.75 / scale + camera_thickness/2}"/> -->
+	<!-- <xacro:property name="camera_z" value="${-0.192 / scale - camera_height/2}"/> -->
 
   <!-- Base link -->
   <link name="base_link">
@@ -141,9 +140,9 @@
   <xacro:rear_wheel
     name="rear"
     parent="base"
-    wheel_radius="${wheel_radius/4}"
-    wheel_thickness="${wheel_thickness/2}"
-    wheel_mass="${wheel_mass/32}">
+    wheel_radius="${wheel_radius}"
+    wheel_thickness="${wheel_thickness}"
+    wheel_mass="${wheel_mass}">
     <origin xyz="${-base_length/2+axle_offset_rear} 0 ${axle_height}" rpy="${-90 * deg_to_rad} 0 0"/>
   </xacro:rear_wheel>
 

@@ -2,4 +2,4 @@
 
 joint_state_publisher:
     type: "joint_state_controller/JointStateController"
-    publish_rate: 1
+    publish_rate: 50

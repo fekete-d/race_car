@@ -183,11 +183,12 @@
     
     <gazebo reference="${name}_wheel_link">
       <!-- <material>Gazebo/Red</material> -->
-      <mu1 value="1.0"/>
-			<mu2 value="1.0"/>
+      <mu1 value="1.5"/>
+			<mu2 value="1.5"/>
 			<kp value="100000.0" />
 			<kd value="10.0" />
 			<fdir1 value="1 0 0"/>
+      <dampingFactor value="0.70"/>
     </gazebo>
   </xacro:macro>
 
@@ -345,11 +346,12 @@
 
     <gazebo reference="${name}_wheel_link">
       <!-- <material>Gazebo/Red</material> -->
-      <mu1 value="1.0"/>
-			<mu2 value="1.0"/>
+      <mu1 value="1.5"/>
+			<mu2 value="1.5"/>
 			<kp value="100000.0" />
 			<kd value="10.0" />
 			<fdir1 value="1 0 0"/>
+      <dampingFactor value="0.70"/>
     </gazebo>
   </xacro:macro>
 </robot>
