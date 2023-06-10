@@ -21,14 +21,14 @@ Fekete Dániel (_I0I7JK_), Demeter Csaba (_VV2GEA_), Matics Bianka (_U6IO4L_)
 A projektfeladat célja egy versenypálya, benne pedig egy versenyautó
 modellezése volt, amely Ackermann kormányzással irányítható, autonóm, kamerás vonalkövetés segítségével végig tud menni a pályán. 
 
-<a href=""><img height="400" src="./assets/youtube-video.png"></a>
+<a href="https://www.youtube.com/watch?feature=player_embedded&v=6f32D3ddb7A" target="_blank"><img src="./assets/video_thumbnail.jpg" alt="Működést bemutató videó" width="789" height="430" /></a>
 
 ## 2. Program felépítése
 
 ### 2.1. Mapparendszer
 
 A mappák struktúrája az internet talált hasonló projektek mintájára lett így strukturálva. 
-![mapparendszer](./assets/)
+![Mapparendszer](./assets/mappa.png)
 
 **_race_car_description_**: Ebben a mappájában van definiálva az autó annak minden elemével, így a kerekekkel és a kamerával is.
 
@@ -50,7 +50,8 @@ A **_launch_** mappákban az indításhoz szükséges programrészek kaptak hely
 
 A szimuláció maga egy biciklit modellez, hátsó kereket hajt, elsőt kormányoz. Mivel a mi autónk négy kerékkel rendelkezik, ezt a bicikli modellt át kellett alakítani egy plugin segítségével.
 Az új modell működési elve, hogy a két első kerék két különböző szögben fordul, irányuk meghosszabbításának metszéspontja pedig kiadja a kört, ami mentén az autó elfordul. A program kiszámolja, hogy a kormányzott bal első és jobb első kerekeknek mennyire kell elfordulnia, hogy a megfelelő sugarú körön forduljon az autó, azaz, hogy a megfelelő irányba haladjon. 
-![Ackermann kormányzás](./assets/)
+
+![Ackermann kormányzás](./assets/ackermann.jpg)
 
 A modellben a
 - joint: összekötőelem, "csukló",
@@ -80,9 +81,9 @@ Az autó eredeti méreteiben lett lemodellezve, és egy _a_ paraméter segítsé
 
 Az autó vizuális modellezéséhez YouTube-ra feltöltött [tutoriált](https://www.youtube.com/watch?v=4fv10A7fiEg) vettünk alapul, amelyet a Gazeboban megalkotott modell méreteihez igazítottunk. A későbbiekben, amikor beillesztettük a vizuális modellt a programba, figyelni kellett a kamera és a kerekek pontos helyzeteire. 
 
-![Autó váz](./assets/)
+![Autó váz](./assets/vaz.png)
 
-![Kerék](./assets/)
+![Kerék](./assets/kerekek.png)
 
 A program _.dae_ fájlt tud feldolgozni, ezért a kész autómodellt Blenderben színeztünk ki és exportáltuk a megfelelő formátumra. Mivel a kerekek egymástól függetlenül kell, hogy tudjanak mozogni, az autó váza, az első és hátsó kerék három külön fáljba lett kiexportálva.
 Ezek után már csak össze kellett kötni a vizuális modelleket az irányított modellel. Ahogy már a mapparendszerben is említettük, az RViz-es vizualizációért a _race_car_viz_ mappában található programrészek felelnek. Amire figyelni kellett, hogy a megfeleltetésnél a méretek és a dimenziók megegyezzenek, és a jointok jó pozícióban legyenek. 
@@ -101,7 +102,7 @@ A futtatás során három képet monitorozunk folyamatosan. Az egyik a HSV szín
 
 A szabályozás során kapott sebesség és szögsebesség értékeket az /ackermann_steering_controller/cmd_vel topicra továbbítjuk.
  
-A vonalkövetés során elsőként egy egyszerű arányos szabályozóval próbálkoztunk, ami egyenesben szépen követte a felrajzolt pályát, de a nagyobb kanyarokat már nem tudta bevenni. Ezután egy robosztusabb PID szabályozót választottunk a feladatra mind a sebesség, mind a szögsebesség szabályozására. Ehhez a python-hoz letölthető _simple_pid_ csomagot használtuk fel. Ezzel a konfigurációval már sikerült elérnünk, hogy a robotunk kellően lelassítson a kanyarhoz, ennek köszönhetően a robot be tudja már venni a kanyart.
+A vonalkövetés során elsőként egy egyszerű arányos szabályozóval próbálkoztunk, ami egyenesben szépen követte a felrajzolt pályát, de a nagyobb kanyarokat már nem tudta bevenni. Ezután egy robosztusabb PID szabályozót választottunk a feladatra mind a sebesség, mind a szögsebesség szabályozására. Ehhez a Python-hoz letölthető _simple_pid_ csomagot használtuk fel. Ezzel a konfigurációval már sikerült elérnünk, hogy a robotunk kellően lelassítson a kanyarhoz, ennek köszönhetően a robot be tudja már venni a kanyart.
 
 Sajnos nagy sebesség esetén a kigyorsítás során a robot elveszti a stabilitását és ennek következtében nem tudja követni a vonalat és a falba ütközik. Ez a probléma ideiglenesen kiküszöbölhető, ha csökkentjük a sebességét. Ilyenkor viszonylag szépen követi a vonalat, de pl. a visszafordító kanyar, vagy az egymásba fűzött kanyarok bevétele során ismét akadályba ütközik. 
 Összességében elmondható, hogy egy jó kiindulási alappal rendelkezünk, melyben a paraméterek megfelelő megválasztásával rengeteg potenciál rejlik. 
@@ -110,7 +111,38 @@ Ennek a problémának a fő forrása a modellalkotásban rejlhet. Valamiért a v
 
 ## 6. Telepítés
 
+A programot úgy indíthatjuk el, ha ezt a GitHub repository-t egy meglévő catkin workspace-be másoljuk a 
+```
+git clone https://github.com/fekete-d/race_car.git
+```
+paranccsal. A futtatáshoz telepített ROS Noetic verziót feltételezünk. A következő csomagok szükségesek a program működéséhez:
+- `ros-noetic-actionlib`
+- `ros-noetic-rospy`
+- `ros-noetłc-theora-image-transport`
+- `ros-noetic-urdf`
+- `ros-noetic-xacro`
+- `ros-noetic-roslaunch`
+- `ros-noetic-joint-state-publisher`
+- `ros-noetic-joint-state-publishér-gui`
+- `ros-noetic-robot-state-publisher`
+- `ros-noetic-rviz`
+- `ros-noetic-ackermann-steering-controller`
+- `ros-noetic-controller-manager`
+- `ros-noetic-joint-state-controller`
+- `ros-noetic-ros-control`
+- `ros-noetic-ros-controllers`
+- `ros-noetic-control-toolbox`
+- `ros-noetic-gazebo-ros-control`
+- `ros-noetic-joint-limits-interface`
+- `ros-noetic-gazebo-ros`
+- `ros-noetic-rqt-robot-steering`
+- `ros-noetic-hector-trajectory-server`
 
+A még nem telepített dependency-k ki is írathatóak, ha a catkin workspace gyökérmappájában lefuttatjuk a `rosdep check --from-paths src --ignore-src --rosdistro noetic` parancsot. Ezt követően a `rosdep install --from-paths src --ignore-src --rosdistro noetic -y` paranccsal ezeket telepíthetjük is. Ezek után már buildelhetjük a catkin workspace-ünket a `catkin_make` parancs segítségével. 
+
+Ahhoz, hogy a Pythonban írt vonalkövető kódot futtathatóvá tegyük, a `chmod +x line_following.py` utasítás szükséges a `race_car/race_car_line_following/scripts` mappában. A Python kód a _rospy_, _cv2_, _cv_bridge_, _numpy_ és _simple_pid_ könyvtárakat használja, így ezeket is telepíteni kell (`pip install <mudule-name>`).
+
+Ezek után már minden készen áll, hogy elindítsuk a programot. Itt három launch fájl érdekes számunkra. Maga a Gazebo és a vonalkövetés a `roslaunch race_car_gazebo race_car_track_monaco.launch` paranccsal indítható. Ha fut a Gazebo, a `roslaunch race_car_viz view_f1_car_robot.launch` utasítás elindít egy RVizes vizualizációt. Amennyiben nem a mozgó versenyautót, hanem magát a modellt szeretnénk megtekinteni, a `roslaunch race_car_viz view_f1_car_model.launch` parancsot írjuk be (ezt célszerű a Gazebo indítása előtt futtatni, hogy a kerekek ne mozogjanak).
 
 ## Források
 - Órai Videók, anyagok
